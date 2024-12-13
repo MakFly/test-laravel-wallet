@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('recurring-transfers.list')" :active="request()->routeIs('recurring-transfers.list')">
+                        {{ __('Recurrent Transfers') }}
+                    </x-nav-link>
                 </div>
             </div>
 
