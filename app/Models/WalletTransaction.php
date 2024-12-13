@@ -16,6 +16,12 @@ class WalletTransaction extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'amount',
+        'type',
+        'transfer_id'
+    ];
+
     protected function casts(): array
     {
         return [

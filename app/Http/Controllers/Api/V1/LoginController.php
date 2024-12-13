@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Api\V1\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController
 {
@@ -19,7 +20,13 @@ class LoginController
             return response()->json([
                 'message' => 'Invalid credentials.',
                 'code' => 'BAD_LOGIN',
-            ], 400);
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (!$user->wallet) {
+            $user->wallet()->create([
+                'balance' => 0
+            ]);
         }
 
         $token = $user->createToken($request->validated('device_name'))->plainTextToken;
@@ -28,6 +35,6 @@ class LoginController
             'data' => [
                 'token' => $token,
             ],
-        ], 201);
+        ], Response::HTTP_CREATED);
     }
 }
