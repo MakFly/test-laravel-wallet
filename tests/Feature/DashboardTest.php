@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Models\Wallet;
+use Illuminate\Support\Number;
 
 use function Pest\Laravel\actingAs;
 
 test('dashboard page is displayed', function () {
+    /** @var User */
     $user = User::factory()->has(Wallet::factory()->richChillGuy())->create();
     $wallet = Wallet::factory()->richChillGuy()->for($user)->create();
 
@@ -24,6 +26,7 @@ test('dashboard page is displayed', function () {
 });
 
 test('send money to a friend', function () {
+    /** @var User */
     $user = User::factory()->has(Wallet::factory()->richChillGuy())->create();
     $recipient = User::factory()->has(Wallet::factory())->create();
 
@@ -52,6 +55,7 @@ test('send money to a friend', function () {
 });
 
 test('cannot send money to a friend with insufficient balance', function () {
+    /** @var User */
     $user = User::factory()->has(Wallet::factory())->create();
     $recipient = User::factory()->has(Wallet::factory())->create();
 

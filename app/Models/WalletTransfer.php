@@ -14,11 +14,11 @@ class WalletTransfer extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = [
-        'source_id',
-        'target_id',
-        'amount',
-    ];
+    // protected $fillable = [
+    //     'source_id',
+    //     'target_id',
+    //     'amount',
+    // ];
 
     /**
      * @return BelongsTo<Wallet>

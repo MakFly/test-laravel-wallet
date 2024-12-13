@@ -12,4 +12,6 @@ Route::post('/v1/login', LoginController::class)->middleware(['guest:sanctum', '
 Route::middleware(['auth:sanctum', 'throttle:api'])->prefix('v1')->group(function () {
     Route::get('/account', AccountController::class);
     Route::post('/wallet/send-money', SendMoneyController::class);
+
+    
 });
